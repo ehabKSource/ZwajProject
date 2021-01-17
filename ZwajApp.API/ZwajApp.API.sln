@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30225.117
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ZwajApp.API", "ZwajApp.API.csproj", "{83B11BD8-DB0D-4F16-9916-31AB1E47E74C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{83B11BD8-DB0D-4F16-9916-31AB1E47E74C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{83B11BD8-DB0D-4F16-9916-31AB1E47E74C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{83B11BD8-DB0D-4F16-9916-31AB1E47E74C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{83B11BD8-DB0D-4F16-9916-31AB1E47E74C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {8DC77ABB-03DC-4F1F-81CF-17E9F3DF6DD6}
+	EndGlobalSection
+EndGlobal
