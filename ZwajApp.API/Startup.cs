@@ -1,8 +1,11 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 using Data;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -12,8 +15,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-
-
+using Microsoft.IdentityModel.Tokens;
+using ZwajApp.API.Data;
 
 namespace ZwajApp.API
 {
@@ -31,11 +34,33 @@ namespace ZwajApp.API
         {
             // services.AddDbContext<DbContext>(options => options.UseSqlite(Configuration.GetConnectionString("DefaultConnection") , b=>b.MigrationsAssembly("ZwajApp.API")));
 
+         
+
             services.AddDbContext<DataContext>(options => options.UseSqlite(Configuration.GetConnectionString("DefaultConnection"), b => b.MigrationsAssembly("ZwajApp.API")));
 
             services.AddControllers();
 
             services.AddCors();
+           
+            services.AddAuthentication(x =>
+            {
+                x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            }).AddJwtBearer(x =>
+            {
+                x.RequireHttpsMetadata = true;
+                x.SaveToken = true;
+                x.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuerSigningKey = true,
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(Configuration.GetValue<string>("AppSettings:Secret"))),
+                    ValidateAudience = false,
+                    ValidateIssuer = false
+
+                };
+            });
+
+            services.AddScoped<IAthuRepository, AuthRepository>();
 
         }
 
@@ -47,12 +72,15 @@ namespace ZwajApp.API
                 app.UseDeveloperExceptionPage();
             }
 
+            
             app.UseCors(x=>x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
 
             app.UseHttpsRedirection();
 
             app.UseRouting();
 
+            app.UseAuthentication();
+            
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

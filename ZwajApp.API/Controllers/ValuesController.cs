@@ -2,10 +2,11 @@ using Microsoft.AspNetCore.Mvc;
 using Data;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Controllers
 {
- 
+    [Authorize]
     [ApiController]
     [Route("[controller]")]
     public class ValuesController : ControllerBase
@@ -17,8 +18,8 @@ namespace Controllers
 
         }
 
-
-    [HttpGet]
+        [AllowAnonymous]
+        [HttpGet]
         public  IActionResult Get(){
 
             var values= _context.values.ToList();

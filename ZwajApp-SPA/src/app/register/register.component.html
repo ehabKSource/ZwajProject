@@ -1,0 +1,16 @@
+<form  class="rtl">
+  <h4 style="font-weight:bold;font-family:'JF Flat';" class="text-center text-dark">شريكك في الحياة بإنتظارك</h4>
+  <hr>
+
+  <div class="form-group">
+    <input name="username" type="text" class="form-control" [(ngModel)]="model.username" placeholder="إسم المشترك">
+  </div>
+  <div class="form-group">
+    <input name="password"  type="password" class="form-control" [(ngModel)]="model.password"  placeholder="كلمة السر">
+  </div>
+
+  <div class="form-group text-center">
+    <button (click)="register()" style="font-weight:bold;font-family:'JF Flat';" class="btn btn-secondary btn-lg" type="submit">إشتراك</button>
+    <button  (click)="cancel()"  style="font-weight:bold;font-family:'JF Flat';" class="btn btn-secondary btn-lg ml-2" type="button">ليس الأن</button>
+  </div>
+</form> 

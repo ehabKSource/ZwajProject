@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 using Models;
+using ZwajApp.API.Models;
 
 namespace Data
 {
@@ -21,6 +22,8 @@ namespace Data
     public class DataContext : DbContext
     {
         public DbSet<Value> values { get; set; }
+
+         public DbSet<User> Users { get; set; }
 
         public DataContext(DbContextOptions<DataContext> options) : base(options)
         {
