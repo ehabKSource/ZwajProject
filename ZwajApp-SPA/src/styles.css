@@ -2,6 +2,9 @@
 
 @import "~bootstrap-v4-rtl/dist/css/bootstrap-rtl.css";
 @import '~font-awesome/css/font-awesome.css';
+@import "~alertifyjs/build/css/alertify.min.css";
+@import "~alertifyjs/build/css/themes/bootstrap.css";
+
 
 @font-face {font-family: "ah-naskh-hadith"; src:url("./assets/fonts/18410-ah-naskh-hadith.ttf");}
 @font-face {font-family: "Droid-Arabic-Kufi-1"; src:url("./assets/fonts/Droid-Arabic-Kufi-1.ttf");}
