@@ -69,7 +69,7 @@ namespace ZwajApp.API.Controllers
             var key = Encoding.ASCII.GetBytes(_appSettings.GetValue<string>("AppSettings:Secret"));
             var tokenDescriptor = new SecurityTokenDescriptor
             {
-                Subject = new ClaimsIdentity(new[] { new Claim("id", user.Id.ToString()) }),
+                Subject = new ClaimsIdentity(new[] { new Claim("id", user.Id.ToString()) , new Claim(ClaimTypes.Name, user.UserName )}),
                 Expires = DateTime.UtcNow.AddDays(7),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
             };

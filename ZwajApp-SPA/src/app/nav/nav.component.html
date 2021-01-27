@@ -23,6 +23,7 @@ font-family:ToyorAljanah;font-size:2.25rem;font-weight:bolder" class="navbar-bra
   <div class="dropdown">
     <i  *ngIf="loggedIn()" style="letter-spacing:1px;font-weight:bold;font-family:'JF Flat';font-size:1.2rem" class="navbar-brand" class="dropdown-toggle text-light nav-link">
       مرحبا بك 
+      {{authService.decodedToken?.unique_name | titlecase}}
     </i>
     <ul class="dropdown-menu">
       <li><a class="dropdown-item" href="#">الملف الشخصي <i class="fa fa-user" aria-hidden="true"></i> </a> </li>

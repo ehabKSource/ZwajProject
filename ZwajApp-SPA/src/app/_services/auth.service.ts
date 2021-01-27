@@ -11,6 +11,8 @@ export class AuthService {
 
   jwtHelper = new JwtHelperService();
 
+  decodedToken :any ;
+
   baseUrl = 'http://localhost:5000/Auth/';
 
 constructor(private http: HttpClient) { }
@@ -21,6 +23,7 @@ login(model: any) {
       const user = response;
       if (user) { 
         localStorage.setItem('token', user.token);
+        this.decodedToken=this.jwtHelper.decodeToken(user.token);
     }
     }))
 }
