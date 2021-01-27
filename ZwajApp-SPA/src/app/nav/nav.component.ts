@@ -15,7 +15,6 @@ export class NavComponent implements OnInit {
 
   ngOnInit() {
     
-
   }
 
   login()
@@ -29,14 +28,17 @@ export class NavComponent implements OnInit {
 
 
   loggedIn() {
-
+    
     return this.authService.loggedIn();
      
   }
 
+  
+
   loggedOut() {
     localStorage.removeItem('token');
     this.alertify.message('تم الخروج');
+    this.loggedIn();
   }
 
 }
