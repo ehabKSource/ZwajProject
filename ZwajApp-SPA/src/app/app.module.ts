@@ -18,6 +18,7 @@ import { ListsComponent } from './lists/lists.component';
 import { MessagesComponent } from './messages/messages.component';
 
 import { appRoutes } from './routes';
+import { AuthGuard } from './_guards/auth.guard';
 
 
 @NgModule({
@@ -35,7 +36,7 @@ import { appRoutes } from './routes';
     BrowserModule , HttpClientModule , FormsModule , BsDropdownModule.forRoot(),
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [AuthService ,ErrorInterceptorProvidor , AlertifyService ],
+  providers: [AuthService ,ErrorInterceptorProvidor , AlertifyService, AuthGuard ],
   bootstrap: [AppComponent]
 })
 export class AppModule  {
