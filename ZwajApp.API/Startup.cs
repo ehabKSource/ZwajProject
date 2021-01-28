@@ -38,14 +38,15 @@ namespace ZwajApp.API
         {
             // services.AddDbContext<DbContext>(options => options.UseSqlite(Configuration.GetConnectionString("DefaultConnection") , b=>b.MigrationsAssembly("ZwajApp.API")));
 
-         
-
             services.AddDbContext<DataContext>(options => options.UseSqlite(Configuration.GetConnectionString("DefaultConnection"), b => b.MigrationsAssembly("ZwajApp.API")));
 
             services.AddControllers();
 
             services.AddCors();
-           
+
+            services.AddSingleton<TrialData>();
+
+
             services.AddAuthentication(x =>
             {
                 x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -69,7 +70,7 @@ namespace ZwajApp.API
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env , TrialData trialData)
         {
             if (env.IsDevelopment())
             {
@@ -101,6 +102,8 @@ namespace ZwajApp.API
             app.UseAuthentication();
             
             app.UseAuthorization();
+
+            //trialData.TrialUsers();
 
             app.UseEndpoints(endpoints =>
             {
