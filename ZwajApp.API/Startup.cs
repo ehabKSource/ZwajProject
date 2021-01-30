@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using AutoMapper;
 using Data;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -21,6 +22,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 using ZwajApp.API.Data;
 using ZwajApp.API.Helpers;
+
 
 namespace ZwajApp.API
 {
@@ -44,7 +46,16 @@ namespace ZwajApp.API
 
             services.AddCors();
 
-            services.AddSingleton<TrialData>();
+            // Auto Mapper Configurations
+            var mapperConfig = new MapperConfiguration(mc =>
+            {
+                mc.AddProfile(new AutoMapperProfiles());
+            });
+
+            IMapper mapper = mapperConfig.CreateMapper();
+            services.AddSingleton(mapper);
+
+            //services.AddSingleton<TrialData>();
 
 
             services.AddAuthentication(x =>
@@ -66,11 +77,13 @@ namespace ZwajApp.API
             });
 
             services.AddScoped<IAthuRepository, AuthRepository>();
+            services.AddScoped<IZwajRepository, ZwajRepository>();
 
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env , TrialData trialData)
+        //public void Configure(IApplicationBuilder app, IWebHostEnvironment env , TrialData trialData)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
             {
